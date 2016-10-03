@@ -22,7 +22,11 @@ package org.apache.maven.surefire.its;
 import org.apache.maven.surefire.its.fixture.OutputValidator;
 import org.apache.maven.surefire.its.fixture.SurefireJUnit4IntegrationTestCase;
 import org.apache.maven.surefire.its.fixture.SurefireLauncher;
+import org.junit.Before;
 import org.junit.Test;
+
+import static org.apache.commons.lang3.JavaVersion.JAVA_1_8;
+import static org.apache.maven.surefire.its.fixture.HelperAssertions.assumeJavaVersion;
 
 /**
  * JUnit 5 Integration Test for testing rerunning of tests.
@@ -32,6 +36,11 @@ import org.junit.Test;
 public class JUnit5RerunFailingTestsIT
     extends SurefireJUnit4IntegrationTestCase
 {
+    @Before
+    public void setUp() throws Exception {
+        assumeJavaVersion( JAVA_1_8 );
+    }
+
     private SurefireLauncher unpack()
     {
         return unpack( "/junit5-rerun-failing-tests" );
