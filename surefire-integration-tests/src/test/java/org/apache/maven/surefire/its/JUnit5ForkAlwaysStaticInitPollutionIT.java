@@ -22,6 +22,9 @@ package org.apache.maven.surefire.its;
 import org.apache.maven.surefire.its.fixture.SurefireJUnit4IntegrationTestCase;
 import org.junit.Test;
 
+import static org.apache.commons.lang3.JavaVersion.JAVA_1_8;
+import static org.apache.maven.surefire.its.fixture.HelperAssertions.assumeJavaVersion;
+
 /**
  * Test JUnit 5 tests in forkMode always with static initializers
  *
@@ -31,8 +34,10 @@ public class JUnit5ForkAlwaysStaticInitPollutionIT
     extends SurefireJUnit4IntegrationTestCase
 {
     @Test
-    public void testJunit4Ignore()
+    public void testJunit5Ignore()
     {
+        assumeJavaVersion( JAVA_1_8 );
+
         executeErrorFreeTest( "junit5-forkAlways-staticInit", 2 );
     }
 }
